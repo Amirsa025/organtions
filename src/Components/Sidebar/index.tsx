@@ -11,4 +11,4 @@ const Sidebar = ({children}: Props) => {
 		</div>
 	);
 }
-export default Sidebar
+export default Sidebar;

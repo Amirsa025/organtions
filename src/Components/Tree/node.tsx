@@ -4,10 +4,9 @@ import {ContextMenuTriggerEx, ContextMenuItemEx, ContextMenuEx } from '../Contex
 
 interface Props {
 	node: NodeType;
-	handleContextMenuClick: (key: string) => void;
+	handleContextMenuClick?: (key?: string) => unknown;
 }
-
-function Node({node, handleContextMenuClick}: Props) {
+function Node({node ,handleContextMenuClick}: Props) {
 	return (
     <div>
       {/* NOTICE: id must be unique between EVERY <ContextMenuTrigger> and <ContextMenu> pair */}
@@ -16,15 +15,13 @@ function Node({node, handleContextMenuClick}: Props) {
         id={node.key}
         title={node.title}
        />
-         
       <ContextMenuEx  id={node.key}>
-        <ContextMenuItemEx handleClick={handleContextMenuClick('ACTION1')} title={'افزودن زیرشاخه'}/>
-        <ContextMenuItemEx handleClick={handleContextMenuClick('ACTION2')} title={'برش'}/>
-        <ContextMenuItemEx handleClick={handleContextMenuClick('ACTION3')} title={'چسباندن'}/>
-        <ContextMenuItemEx handleClick={handleContextMenuClick('ACTION4')} title={'حذف'}/>
+        <ContextMenuItemEx handleClick={()=>handleContextMenuClick('add')}  title={'افزودن زیرشاخه'}/>
+        <ContextMenuItemEx handleClick={()=>handleContextMenuClick('cut')}  title={'برش'}/>
+        <ContextMenuItemEx handleClick={()=>handleContextMenuClick('paste')}  title={'چسباندن'}/>
+        <ContextMenuItemEx handleClick={()=>handleContextMenuClick('delete')} title={'حذف'}/>
       </ContextMenuEx>
- 
     </div>
   );
 }
-export default Node
+export default React.memo(Node)

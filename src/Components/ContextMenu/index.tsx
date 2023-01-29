@@ -4,6 +4,7 @@ import { ContextMenuTrigger, ContextMenu, ContextMenuItem } from 'rctx-contextme
 
 export function ContextMenuTriggerEx({ id, title }) {
     return (<ContextMenuTrigger
+
         id={id}
     >
         {title}
@@ -11,13 +12,23 @@ export function ContextMenuTriggerEx({ id, title }) {
 }
 
 export function ContextMenuEx({ id, children }) {
-    return (<ContextMenu id={id}>
+    return (<ContextMenu
+        appendTo="body"
+        animation="zoom"
+        hideOnLeave={false}
+        id={id}>
         {children}
     </ContextMenu>)
 }
 
-export function ContextMenuItemEx({ title, handleClick }) {
+export function ContextMenuItemEx({ title ,handleClick}) {
     return (
-        <ContextMenuItem onClick={handleClick}>{title}</ContextMenuItem>
+        <ContextMenuItem
+            preventClose={true}
+
+            onClick={handleClick}>{title}</ContextMenuItem>
     );
 }
+// const handleClick = ()=>{
+//         console.log("clik")
+// }
